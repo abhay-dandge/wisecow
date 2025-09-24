@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('git clone -cloning repo') {
+            steps {
+                git branch: 'main', url: 'Git_HUB_URL'
+            }
+        }
+        stage('docker-build') {
+            steps {
+                sh 'docker build -t mykucl1 .'
+          }
+        }
+          stage('docker-tag-push to Dockerhub') {
+            steps {
+                script {
+                    withDockerRegistry(credentialsId: 'dockerid') {
+                        sh 'docker tag mykucl1 sidhu1504/docker-jenkins-cicd:mykucl${BUILD_NUMBER}'
+                        sh 'docker push sidhu1504/docker-jenkins-cicd:mykucl${BUILD_NUMBER}'
+                    }   
+               }
+    }
+}
+        stage('creating deployment'){
+            steps {
+                sh "sed -i 's,docker.io/httpd,sidhu1504/docker-jenkins-cicd:mykucl${BUILD_NUMBER},' deployment.yaml"
+                sh 'kubectl apply -f deployment.yaml --kubeconfig=/tmp/myconfig'
+            }
+        }
+        }
+}
