@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: wisecow
-          image: wisecow:latest         
+          image: abhaydandgedocker/wisecow:latest         
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 4499
