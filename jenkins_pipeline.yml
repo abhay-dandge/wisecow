@@ -4,27 +4,27 @@ pipeline {
     stages {
         stage('git clone -cloning repo') {
             steps {
-                git branch: 'main', url: 'Git_HUB_URL'
+                git branch: 'main', url: 'https://github.com/abhay-dandge/wisecow.git'
             }
         }
         stage('docker-build') {
             steps {
-                sh 'docker build -t mykucl1 .'
+                sh 'docker build -t new_wisecow .'
           }
         }
           stage('docker-tag-push to Dockerhub') {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'dockerid') {
-                        sh 'docker tag mykucl1 sidhu1504/docker-jenkins-cicd:mykucl${BUILD_NUMBER}'
-                        sh 'docker push sidhu1504/docker-jenkins-cicd:mykucl${BUILD_NUMBER}'
+                        sh 'docker tag new_wisecow abhaydandgedocker/wisecow:${BUILD_NUMBER}'
+                        sh 'docker push abhaydandgedocker/wisecow:${BUILD_NUMBER}'
                     }   
                }
     }
 }
         stage('creating deployment'){
             steps {
-                sh "sed -i 's,docker.io/httpd,sidhu1504/docker-jenkins-cicd:mykucl${BUILD_NUMBER},' deployment.yaml"
+                sh "sed -i 's,docker.io/abhaydandgedocker/wisecow:{BUILD_NUMBER},' ./Manifest/deployment.yaml"
                 sh 'kubectl apply -f deployment.yaml --kubeconfig=/tmp/myconfig'
             }
         }
