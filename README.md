@@ -90,6 +90,8 @@ wisecow/
 
 ├── README.md
 
+├── jenkins_pipeline.yml
+
 └── wisecow.sh
 ```
 
