@@ -73,14 +73,23 @@ Develop automation scripts for monitoring Linux systems and analyzing server log
 
 ## 🏗️ Repository Structure  
 
+```
 wisecow/
-├── Dockerfile
-├── LICENSE
-├── Manifest
-│   ├── deployment.yml
-│   ├── namespace.yml
-│   └── svc.yml
-├── README.md
-└── wisecow.sh
 
+├── Dockerfile
+
+├── LICENSE
+
+├── Manifest
+
+│   ├── deployment.yml
+
+│   ├── namespace.yml
+
+│   └── svc.yml
+
+├── README.md
+
+└── wisecow.sh
+```
 
