@@ -75,23 +75,18 @@ Develop automation scripts for monitoring Linux systems and analyzing server log
 
 ```
 wisecow/
-
 ├── Dockerfile
-
 ├── LICENSE
-
 ├── Manifest
-
 │   ├── deployment.yml
-
 │   ├── namespace.yml
-
 │   └── svc.yml
-
+├── Problem Statement 2
+│   ├── 1. System Health Monitoring Script.sh
+│   └── log_analyzer.sh
 ├── README.md
-
 ├── jenkins_pipeline.yml
-
 └── wisecow.sh
+
 ```
 
